@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenuItem } from '../interfaces/menu-list.interface';
 import { MenuServiceService } from '../services/menu-service.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
