@@ -16,7 +16,7 @@
         <ul class="w-full">
             @for (subMenuLink of menuLink.children; track subMenuLink.label) {
             <li class="border-b border-slate-300 hover:bg-slate-300">
-                <a [routerLink]="subMenuLink.path" routerLinkActive="text-orange-400 font-semibold"
+                <a [routerLink]="subMenuLink.path" routerLinkActive="text-blue-400 font-semibold"
                 [routerLinkActiveOptions]="{ exact: true }" class="block w-full py-2 mx-4" (click)="isMenuOpen = false">
                     {{ subMenuLink.label }}
                 </a>
@@ -27,7 +27,7 @@
         } @else {
         <!-- Elemento sin submenú -->
         <li class="border-b border-slate-300 hover:bg-slate-300">
-            <a [routerLink]="menuLink.path" routerLinkActive="text-orange-400 font-semibold"
+            <a [routerLink]="menuLink.path" routerLinkActive="text-blue-400 font-semibold"
                 [routerLinkActiveOptions]="{ exact: true }" class="block w-full py-2 mx-2" (click)="isMenuOpen = false">
                 {{ menuLink.label }}
             </a>
