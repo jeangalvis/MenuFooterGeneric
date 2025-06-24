@@ -1,0 +1,36 @@
+<!-- Menú de escritorio -->
+<div>
+    <ul class="flex gap-5 items-center">
+        @for (menuLink of menuList; track $index) {
+        <li class="relative group">
+            @if (!menuLink.children) {
+            <a [routerLink]="menuLink.path" routerLinkActive="text-orange-400 font-semibold"
+                [routerLinkActiveOptions]="{ exact: true }" class="text-gray-700 hover:text-orange-400 px-2 my-2">
+                {{ menuLink.label }}
+            </a>
+            } @else {
+            <div class="cursor-pointer text-gray-700 px-2 my-2 flex items-center justify-center gap-0 group">
+                <span class="">{{ menuLink.label }}</span>
+                <svg class="transition-transform duration-300 group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg"
+                    width="30" height="30" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="m7 10l5 5l5-5z" />
+                </svg>
+            </div>
+
+            <ul
+                class="absolute left-0 w-40 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50">
+                @for (subMenuLink of menuLink.children; track $index) {
+                <li>
+                    <a [routerLink]="subMenuLink.path" routerLinkActive="text-orange-400 font-semibold"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        {{ subMenuLink.label }}
+                    </a>
+                </li>
+                }
+            </ul>
+            }
+        </li>
+        }
+    </ul>
+</div>

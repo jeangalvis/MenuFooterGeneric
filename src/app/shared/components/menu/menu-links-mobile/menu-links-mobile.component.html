@@ -1,0 +1,39 @@
+@if (isMenuOpen) {
+<div class="w-full">
+    <ul class="w-full">
+        @for (menuLink of menuList; track menuLink.label) {
+        @if (menuLink.children) {
+        <li class="border-b border-slate-300 hover:bg-slate-300 flex items-center justify-between px-2 py-2 cursor-pointer"
+            (click)="toggleSubMenu(menuLink.label)">
+            <span>{{ menuLink.label }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m7 10l5 5l5-5z" />
+            </svg>
+        </li>
+
+        <!-- Submenú solo visible si está abierto -->
+        @if (isSubMenuOpen(menuLink.label)) {
+        <ul class="w-full">
+            @for (subMenuLink of menuLink.children; track subMenuLink.label) {
+            <li class="border-b border-slate-300 hover:bg-slate-300">
+                <a [routerLink]="subMenuLink.path" routerLinkActive="text-orange-400 font-semibold"
+                [routerLinkActiveOptions]="{ exact: true }" class="block w-full py-2 mx-4" (click)="isMenuOpen = false">
+                    {{ subMenuLink.label }}
+                </a>
+            </li>
+            }
+        </ul>
+        }
+        } @else {
+        <!-- Elemento sin submenú -->
+        <li class="border-b border-slate-300 hover:bg-slate-300">
+            <a [routerLink]="menuLink.path" routerLinkActive="text-orange-400 font-semibold"
+                [routerLinkActiveOptions]="{ exact: true }" class="block w-full py-2 mx-2" (click)="isMenuOpen = false">
+                {{ menuLink.label }}
+            </a>
+        </li>
+        }
+        }
+    </ul>
+</div>
+}
